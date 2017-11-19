@@ -20,13 +20,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 =end
-Rails.application.routes.draw do
 
-  def add_swagger_route http_method, path, opts = {}
-    full_path = path.gsub(/{(.*?)}/, ':\1')
-    match full_path, to: "#{opts.fetch(:controller_name)}##{opts[:action_name]}", via: http_method
-  end
 
-  add_swagger_route 'GET', '/Pet/1.0.1/pets', controller_name: 'default', action_name: 'list_pets'
-  add_swagger_route 'POST', '/Pet/1.0.1/pets', controller_name: 'default', action_name: 'pets_post'
+class ErrorResponseErrors < ApplicationRecord
+  validates_presence_of :detail
+
 end
