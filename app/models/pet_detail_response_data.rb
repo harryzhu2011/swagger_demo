@@ -22,9 +22,7 @@ limitations under the License.
 =end
 
 
-class PetDetailResponseData < ApplicationRecord
-  validates_presence_of :name
-  validates_presence_of :age
-  validates_presence_of :type
+class PetDetailResponseData < PetSummary
+  attr_accessor :age
 
 end

@@ -21,16 +21,44 @@ limitations under the License.
 
 =end
 class DefaultController < ApplicationController
+  before_action :set_headers
+
+  def set_headers
+    response.headers['Content-Type'] = 'application/vnd.api+json'
+  end
 
   def list_pets
     # Your code here
 
-    render json: {"message" => "yes, it worked"}
+    pet1 = PetSummary.new.tap do |u|
+      u.name = 'Awesome Cat - 1'
+      u.type = 'CAT'
+    end
+
+    pet2 = PetSummary.new.tap do |u|
+      u.name = 'Awesome Cat - 2'
+      u.type = 'CAT'
+    end
+
+    render json: {data: [pet1, pet2]}
   end
 
   def pets_post
     # Your code here
 
-    render json: {"message" => "yes, it worked"}
+    pet1 = PetDetailResponseData.new.tap do |u|
+      u.name = 'Awesome Cat - 1'
+      u.type = 'CAT'
+      u.age = 2
+    end
+
+    pet2 = PetDetailResponseData.new.tap do |u|
+      u.name = 'Awesome Cat - 2'
+      u.type = 'CAT'
+      u.age = 5
+    end
+
+    response.headers['location'] = 'http://localhost/dummy'
+    render json: {data: [pet1, pet2]}, status: 201
   end
 end

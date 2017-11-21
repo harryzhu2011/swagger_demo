@@ -21,7 +21,7 @@ limitations under the License.
 
 =end
 
-class InitTables < ActiveRecord::Migration
+class InitTables < ActiveRecord::Migration[5.0]
   def change
     create_table "create_pet_detail".pluralize.to_sym, id: false do |t|
       t.string :name

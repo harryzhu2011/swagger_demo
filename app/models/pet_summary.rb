@@ -22,8 +22,11 @@ limitations under the License.
 =end
 
 
-class PetSummary < ApplicationRecord
-  validates_presence_of :name
-  validates_presence_of :type
+# class PetSummary < ApplicationRecord
+class PetSummary
+  # validates_presence_of :name
+  # validates_presence_of :type
+
+  attr_accessor :name, :type
 
 end
