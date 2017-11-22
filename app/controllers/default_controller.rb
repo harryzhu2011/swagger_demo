@@ -58,7 +58,10 @@ class DefaultController < ApplicationController
       u.age = 5
     end
 
+    test_400 = request.headers['Test-400']
+    logger.debug test_400
+
     response.headers['location'] = 'http://localhost/dummy'
-    render json: {data: [pet1, pet2]}, status: 201
+    render json: {data: [pet1, pet2]}, status: !test_400.nil? && test_400 == 'Y' ? 400 : 201
   end
 end
